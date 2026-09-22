@@ -49,7 +49,7 @@
 
 - [x] **V1 雏形版（MVP）**：实现 SDO 意图双向路由、基础原子性检查与 Conventional Commits 格式化。
 - [x] **V2 规约版（Iron Rules）**：引入《认知铁律 The Iron Law》、《借口粉碎表 Excuse Crusher》与发包前强制自检清单。
-- [ ] **V3 结构版（Onion Decoupling）**：将枚举字典、多语言规范抽离到 `references/` 目录，轻量化主指令上下文。
+- [x] **V3 结构版（Onion Decoupling）**：将枚举字典、多语言规范抽离到 `references/` 目录，轻量化主指令上下文。
 - [ ] **V4 工业版（Physical Gate）**：引入 `scripts/` Python 正则门禁，通过 Exit Code 0/1 打造确定性物理阻断。
 
 ---
