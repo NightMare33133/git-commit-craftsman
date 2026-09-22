@@ -50,7 +50,7 @@
 - [x] **V1 雏形版（MVP）**：实现 SDO 意图双向路由、基础原子性检查与 Conventional Commits 格式化。
 - [x] **V2 规约版（Iron Rules）**：引入《认知铁律 The Iron Law》、《借口粉碎表 Excuse Crusher》与发包前强制自检清单。
 - [x] **V3 结构版（Onion Decoupling）**：将枚举字典、多语言规范抽离到 `references/` 目录，轻量化主指令上下文。
-- [ ] **V4 工业版（Physical Gate）**：引入 `scripts/` Python 正则门禁，通过 Exit Code 0/1 打造确定性物理阻断。
+- [x] **V4 工业版（Physical Gate）**：引入 `scripts/` Python 正则门禁，通过 Exit Code 0/1 打造确定性物理阻断。
 
 ---
 
@@ -98,6 +98,27 @@ git commit -m "fix(auth): refresh token 60s before expiration"
 > git add services/refund.py
 > git commit -m "fix(refund): resolve precision issue in refund calculation"
 > ```
+
+---
+
+## 🤖 自动化物理门禁 (Verification Gate)
+
+本项目在 `scripts/` 目录内置了纯 Python 确定性门禁校验器，**0 Token 消耗，提供毫秒级 Exit Code 物理阻断**：
+
+```bash
+# 运行单元自测试套件（8 大核心规则全覆盖）
+python3 scripts/verify_commit.py --self-test
+
+# 校验一条提交信息
+python3 scripts/verify_commit.py "feat(auth): add google oauth2 login"
+# ✅ 输出：[GATE APPROVED] Commit message strictly satisfies all craftsman rules. (Exit 0)
+
+python3 scripts/verify_commit.py "fix(auth): fixed token expiration bug in user authentication session"
+# ❌ 输出：[GATE REJECTED] Commit message violated craftsman rules:
+#    • Header exceeds 50-character ceiling: detected 67 characters (17 chars over limit).
+#    • Subject verb must be bare imperative, not past/third-person. Found: 'fixed'.
+# (Exit 1)
+```
 
 ---
 
